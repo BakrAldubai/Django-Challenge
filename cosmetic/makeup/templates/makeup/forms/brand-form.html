@@ -1,0 +1,26 @@
+{% extends 'makeup/base/base.html' %}
+
+{% load static %}
+
+{% block page_title %} Cosmetic Boutique Brands  {% endblock %}
+{% block title %} Add Brand {% endblock %}
+
+   {% block content %}
+
+  <div class="col-sm-10">
+      {% if show %}
+  <form action="" method="POST">
+      {% csrf_token %}
+     <ul>
+  {{ form.as_ul }}
+     </ul>
+    <input type="submit" name="submit" > </input>
+  </form>
+
+  {% else %}
+     <h5>
+        Error 404 "Not Found"
+     </h5>
+     {% endif %}
+  </div>
+{% endblock %}

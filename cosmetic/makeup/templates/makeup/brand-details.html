@@ -1,0 +1,41 @@
+
+{% extends 'makeup/base/base.html' %}
+
+{% load static %}
+
+{% block page_title %} {{brand_name}} {% endblock %}
+{% block title %} {{brand_name}} Details {% endblock %}
+ {% block content %}
+  <div id="content" class="container">
+   <div class="row">
+     {% if show %}
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body">
+          <div class="col-sm-12 rw-sm-8 ">
+          <img class="card-img-top" src="{{brand_image.url}}" alt="{{brand_name}}"  >
+          </div>
+        <h5 style="margin :15px ; " class="card-title">name: {{brand_name}}</h5>
+        <p style="margin :15px ; " class="card-text">Origin: {{brand_origin}}</p>
+
+          {% for group in request.user.groups.all %}
+    {% if group.name == 'admin' %}
+
+          <a href="{% url 'update-brand-form' id %}" class="btn btn-primary">Update</a>
+          <a href="{% url 'delete-brand-form' id %}" class="btn btn-primary">Delete</a>
+
+    {% endif %}
+{% endfor %}
+
+
+      </div>
+    </div>
+  </div>
+     {% else %}
+     <h5>
+        Error 404 "Not Found"
+        </h5>
+     {% endif %}
+</div>
+  </div>
+ {% endblock %}

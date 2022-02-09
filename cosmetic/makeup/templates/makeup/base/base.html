@@ -1,0 +1,114 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    {% block page_title %} Cosmetic Boutique {% endblock %}
+  </title>
+  <link rel="stylesheet" href="{% static 'makeup/styles/makeup.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+  {% block links %} {% endblock %}
+<style>
+  {% block style %}  {% endblock %}
+ </style>
+</head>
+
+<body>
+  <div class="sidebar">
+    <div class="logo_content">
+      <div class="logo">
+        <div class="logo_name">Menu</div>
+      </div>
+      <i class='bx bx-menu' id="btn"></i>
+    </div>
+
+    <ul class="nav_list">
+
+      <li>
+        <a href="{% url 'home' %}">
+          <i class='bx bxs-home'></i>
+            <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+
+      <li>
+        <a href="{% url 'all-products' %}">
+          <i class='bx bxl-product-hunt'></i>
+          <span class="links_name">Products</span>
+        </a>
+        <span class="tooltip">Products</span>
+      </li>
+
+      <li>
+        <a href="{% url 'all-brands' %}">
+          <i class='bx bxs-cool'></i>
+          <span class="links_name">Brands</span>
+        </a>
+        <span class="tooltip">Brands</span>
+      </li>
+      {%  if not request.user.is_authenticated %}
+      <li>
+        <a href="{% url 'login' %}">
+          <i class='bx bx-log-in'></i>
+            <span class="links_name">Login</span>
+        </a>
+        <span class="tooltip">Login</span>
+      </li>
+
+       <li>
+        <a href="{% url 'register' %}">
+          <i class='bx bx-user-plus'></i>
+            <span class="links_name">Register</span>
+        </a>
+        <span class="tooltip">Register</span>
+      </li>
+      {% endif %}
+     {%  if request.user.is_authenticated %}
+      <li>
+        <a href="{% url 'logout' %}">
+          <i class='bx bx-log-out'></i>
+            <span class="links_name">Logout</span>
+        </a>
+        <span class="tooltip">Logout</span>
+      </li>
+
+      {% endif %}
+
+
+
+    </ul>
+  </div>
+
+  <div class="home_content">
+    <div class="text">
+      <header id="showcase" class="container">
+        <h1>
+           {% block title %} Cosmetic Boutique {% endblock %}
+        </h1>
+      </header>
+
+                {% block content %} {% endblock %}
+    </div>
+  </div>
+
+  <script>
+    let btn = document.querySelector("#btn");
+    let sidebar = document.querySelector(".sidebar");
+
+    btn.onclick = function(){
+      sidebar.classList.toggle("active");
+    }
+
+  </script>
+
+</body>
+</html>
+

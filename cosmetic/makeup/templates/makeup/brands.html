@@ -1,0 +1,36 @@
+{% extends 'makeup/base/base.html' %}
+
+{% load static %}
+
+{% block page_title %} Cosmetic Boutique Brands  {% endblock %}
+{% block title %} All Brands {% endblock %}
+
+   {% block content %}
+
+{% for group in request.user.groups.all %}
+    {% if group.name == 'admin' %}
+
+  <a href="{% url 'add-brand-form' %}" class="btn btn-primary">Add Brand</a>
+
+    {% endif %}
+{% endfor %}
+
+
+
+
+  <div id="content" class="container">
+   <div class="row">
+     {% if show %}
+         {% for brand in all_brands %}
+
+       {% include 'makeup/includes/brand-item.html' with name=brand.name image=brand.image.url id=brand.id  %}
+
+         {% endfor %}
+     {% else %}
+     <h5>
+        there is no brands
+        </h5>
+     {% endif %}
+</div>
+  </div>
+   {% endblock %}

@@ -1,78 +1,18 @@
+{% extends 'makeup/base/base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cosmetic Boutique </title>
-  <link rel="stylesheet" href="{% static 'makeup/styles/makeup.css' %}">
-  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-</head>
-<body>
-  <div class="sidebar">
-    <div class="logo_content">
-      <div class="logo">
-        <div class="logo_name">Menu</div>
-      </div>
-      <i class='bx bx-menu' id="btn"></i>
-    </div>
 
-    <ul class="nav_list">
+{% block page_title %} Cosmetic Boutique Home {% endblock %}
+{% block title %} Cosmetic Boutique {% endblock %}
 
-      <li>
-        <a href="/index/">
-          <i class='bx bxs-home'></i>
-            <span class="links_name">Home</span>
-        </a>
-        <span class="tooltip">Home</span>
-      </li>
-
-      <li>
-        <a href="#">
-          <i class='bx bxl-product-hunt'></i>
-          <span class="links_name">All Products</span>
-        </a>
-        <span class="tooltip">All Products</span>
-      </li>
-
-      <li>
-        <a href="#">
-          <i class='bx bxs-cool'></i>
-          <span class="links_name">Brands</span>
-        </a>
-        <span class="tooltip">Brands</span>
-      </li>
-
-    </ul>
-  </div>
-
-  <div class="home_content">
-    <div class="text">
-      <header id="showcase" class="container">
-        <h1>Cosmetic Boutique</h1>
-      </header>
+   {% block content %}
       <div id="content" class="container">
         <h5>
-        number of products :
+        number of products : {{ products_count }}
         </h5>
           <h5>
-        number of brands :
+        number of brands :  {{ brands_count }}
         </h5>
       </div>
-    </div>
-  </div>
 
-  <script>
-    let btn = document.querySelector("#btn");
-    let sidebar = document.querySelector(".sidebar");
-
-    btn.onclick = function(){
-      sidebar.classList.toggle("active");
-    }
-
-  </script>
-
-</body>
-</html>
-
+   {% endblock %}
